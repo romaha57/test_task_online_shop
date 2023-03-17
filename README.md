@@ -26,4 +26,4 @@
 
 ## Структура БД
 
-![database_structure](/img/database_structure.png)
+![database_structure](/online_shop/static/img/database_structure.png)
