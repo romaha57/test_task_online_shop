@@ -1,10 +1,10 @@
+from app_products.models import Basket, Order
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
-from app_products.models import Basket, Order
 from .forms import LoginForm, RegistrationForm
 from .models import User
 

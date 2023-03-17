@@ -1,0 +1,495 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Онлайн магазин",
+    "description": "Спецификация для сайта по продаже товаров",
+    "version": "0.0.1",
+    "contact": {
+      "name": "Roma",
+      "url": "https://romaha57.github.io",
+      "email": "romes57r@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/",
+      "description": "Dev server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Пользователи"
+    },
+    {
+      "name": "Shop",
+      "description": "Онлайн магазин"
+    },
+    {
+      "name": "Admin",
+      "description": "Админка Django"
+    }
+  ],
+  "paths": {
+    "/account/login/": {
+      "get": {
+        "summary": "Получение формы логина",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "Метод получения формы аутентификации",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>UserLoginForm</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Отправка формы логина на сервер",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный логин пользователя",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>HomePage</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/logout/": {
+      "get": {
+        "summary": "Logout пользователя",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный выход пользователя",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>HomePage</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/signup/": {
+      "get": {
+        "summary": "Получение формы регистрации",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное получение формы регистрации",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>UserSignUpForm</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Отправка формы регистрации на сервер",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешная регистрация пользователя",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>HomePage</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 500</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/profile/{email}": {
+      "get": {
+        "summary": "Личный кабинет пользователя",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "email пользователя",
+            "example": "test@mail.ru",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Вход в личный кабинет",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>UserProfile</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404/403</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Главная страница",
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное получение домашней страницы",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>HomePage</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalog/": {
+      "get": {
+        "summary": "Каталог товаров с пагинацией",
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное получение каталога товаров",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Catalog</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalog/page/{page}": {
+      "get": {
+        "summary": "Каталог товаров с пагинацией",
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "required": true,
+            "description": "номер страницы",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное получение каталога товаров с пагинацией",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Catalog</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-order/": {
+      "get": {
+        "summary": "Создание заказа",
+        "tags": [
+          "Shop"
+        ],
+        "responses": {
+          "201": {
+            "description": "Успешное создание и сохранение заказа в БД",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>CreateOrder</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 201 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/basket/add/{item_id}": {
+      "get": {
+        "summary": "Добавление товара в корзину",
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "description": "id товара",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное добавление товара в корзину",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Catalog</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/basket/remove/{basket_id}/": {
+      "delete": {
+        "summary": "Удаление корзины",
+        "tags": [
+          "Shop"
+        ],
+        "parameters": [
+          {
+            "name": "basket_id",
+            "in": "path",
+            "required": true,
+            "description": "id корзины",
+            "example": 1,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное удаление корзины",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>UserProfile</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/": {
+      "get": {
+        "summary": "Админка Django",
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешное получение формы логина в админку Django",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>DjangoLoginForm</body></html>"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все кроме 200 ответа",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<html><body>Error 404</body></html>"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

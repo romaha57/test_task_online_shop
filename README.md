@@ -9,13 +9,15 @@
 ## Установка:
 
 1. `git clone https://github.com/romaha57/test_task_online_shop.git`
-2. `pip install -r requirements.txt`
-3. `cd online_shop`
-4. `python manage.py makemigrations`
-5. `python manage.py migrate`
-6. `python manage.py createsuperuser`
+2. `pip install --upgrade pip`
+3. `pip install -r requirements.txt`
+4. `cd online_shop`
+5. `python manage.py makemigrations`
+6. `python manage.py migrate`
+7. `python manage.py createsuperuser`
 
 ## Как работает сайт
+- Документация OpenAPI в файлах openapi.json/openapi.yaml
 - Устанавливаем себе на компьютер по инструкции выше
 - Заходим на localhost:8000/admin и авторизуемся как суперпользователь
 - Далее наш суперпользователь, созданный в начале имеет максимальные права и затем он раздает их другим пользователям (администраторам сайта)
@@ -24,7 +26,7 @@
 - ![add_permissions](/online_shop/static/img/change_status_order.png)
 - По нажатию на значок лупы откроется окно с пользователями сайта, нужно выбрать по фильтру администраторов и назначить администратора, который поменял статус заказа
 - Также при отклонении заказа нужно написать комментарий к этому заказу, чтобы пользователь увидел причину( по умолчанию он видит 'Уточняется')
-
+- Для теста функционала уже добавлена пару простых товаров
 ## Функционал
 
 - Регистрация и авторизация
@@ -37,3 +39,5 @@
 ## Структура БД
 
 ![database_structure](/online_shop/static/img/database_structure.png)
+
+P.S. Если будут какие-то вопросы с радостью отвечу: https://t.me/romaha_57

@@ -1,13 +1,13 @@
 import random
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from django.contrib import messages
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView, TemplateView
 
-from .models import Item, Order, Basket
+from .models import Basket, Item, Order
 
 
 class HomeView(TemplateView):
@@ -22,6 +22,7 @@ class CatalogListView(ListView):
     model = Item
     context_object_name = 'items'
     template_name = 'app_products/catalog.html'
+    paginate_by = 3
 
 
 @login_required
@@ -52,9 +53,11 @@ class SaveOrderView(View):
     def get(self, request):
         """Создаем заказ в БД и обновляем данные корзины пользователя"""
 
+        comment = request.GET.get('comment')
         order = Order.objects.create(
             owner=request.user,
-            number=random.randint(1, 10000)
+            number=random.randint(1, 10000),
+            comment=comment
         )
         messages.info(request, message='Заказ успешно сохранен и отправлен для подтверждения')
         order.update_after_ordering()

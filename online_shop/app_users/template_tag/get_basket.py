@@ -1,7 +1,5 @@
-from django.template import Library
-
 from app_products.models import Basket
-
+from django.template import Library
 
 register = Library()
 

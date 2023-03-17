@@ -6,6 +6,10 @@ body {
     background-color: #F6FFF8;
 }
 
+.page-link {
+    background-color: #F6FFF8;
+}
+
 .form-shadow {
     border: solid 1px #ccc;
     box-shadow: 12px 12px 2px 1px rgba(224, 252, 227, 0.35);
