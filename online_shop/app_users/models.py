@@ -10,7 +10,6 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name='email')
     patronymic = models.CharField(max_length=100, verbose_name='отчество', blank=True)
     phone_number = PhoneNumberField(verbose_name='номером телефона', unique=True)
-    is_admin = models.BooleanField(default=False, verbose_name='админ')
 
     # устанавливаем аутентификацию по email
     REQUIRED_FIELDS = ['username']
