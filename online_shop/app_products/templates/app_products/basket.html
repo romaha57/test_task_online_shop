@@ -1,0 +1,42 @@
+{% load humanize %}
+
+
+{% if baskets %}
+    <div class="container">
+        <div class="row">
+          <div class="col">
+               <ol class="list-group list-group-numbered">
+                    {% for basket in baskets %}
+
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                              <div class="fw-bold"><h3>{{ basket.item.name }}</h3></div>
+                                  {{ basket.item.comment }}
+                              <a class="btn btn-danger" href="{% url 'app_products:delete_from_basket' basket_id=basket.id %}" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Удалить</a>
+                            </div>
+                            <span class="badge bg-secondary">{{ basket.item.price | intcomma }} руб.</span>&nbsp&nbsp
+                            <span class="badge bg-secondary">{{ basket.quantity }} шт.</span>&nbsp &nbsp
+                            <span class="badge bg-secondary">Всего: {{ basket.sum_items | intcomma }} руб.</span>
+                        </li>
+
+                    {% endfor %}
+               </ol>
+               <hr>
+               <div class="text-center">
+                    <h5>Всего товаров: {{ baskets.total_quantity }} шт. </h5>
+                    <h5>Товаро на сумму: {{ baskets.total_sum | intcomma }} руб. </h5>
+                    <form>
+                       <a class="btn btn-success btn-lg float-right" href="{% url 'app_products:save_order' %}">
+                            Оформить заказ
+                       </a>
+                    </form>
+               </div>
+          </div>
+        </div>
+    </div>
+{% else %}
+
+<h2>Корзина пока пуста</h2>
+<a class="btn btn-primary" href="{% url 'app_products:catalog' %}">Найти подходящий товар</a>
+
+{% endif %}

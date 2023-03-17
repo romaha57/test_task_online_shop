@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Регистрация {% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8 text-center">
+            <h3>Если у вас еще уже есть аккаунт</h3>
+            <p><a class="btn btn-primary" href="{% url 'app_users:login' %}">Вход</a></p>
+
+            <form class="form-shadow form-color" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="input-size">
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                {% endfor %}
+                <br>
+                <button class="btn btn-primary mb-3" type="submit">Зарегистрироваться</button>
+                <br>
+            </form>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

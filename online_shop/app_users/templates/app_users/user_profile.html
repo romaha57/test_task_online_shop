@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block title %} Личный кабинет {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <strong>Неподтвержденные заказы</strong>
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      {% for created_order in created_orders %}
+                          <p>Номер заказа: <b>{{ created_order.number }}</b></p>
+                          <p>Сумма заказа: <b>{{ created_order.basket_history.total_sum | intcomma }}</b> руб.</p>
+                          <p>Создан: {{ created_order.created_at | naturaltime }}</p>
+                          <hr>
+                      {% empty %}
+                            <p>Заказов не найдено</p>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <strong>Подтвержденные</strong>
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+
+                      {% for confirmed_order in confirmed_orders %}
+                          <p>Номер заказа: <b>{{ confirmed_order.number }}</b></p>
+                          <p>Сумма заказа: <b>{{ confirmed_order.basket_history.total_sum | intcomma }}</b> руб.</p>
+                          <p>Подтвержден: {{ confirmed_order.confirmed_at | naturaltime }}</p>
+                          <hr>
+                      {% empty %}
+                            <p>Заказов не найдено</p>
+                      {% endfor %}
+
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <strong>Отклоненные заказы</strong>
+                </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+
+                       {% for rejected_order in rejected_orders %}
+                          <p>Номер заказа: <b>{{ rejected_order.number }}</b></p>
+                          <p>Сумма заказа: <b>{{ rejected_order.basket_history.total_sum | intcomma }}</b> руб.</p>
+                          <p>Отклонен: {{ rejected_order.rejected_at | naturaltime }}</p>
+                          <p>Причина отклонения: {{ rejected_order.comment_for_reject }} </p>
+                          <hr>
+                        {% empty %}
+                            <p>Заказов не найдено</p>
+                      {% endfor %}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+            {% include 'app_products/basket.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
