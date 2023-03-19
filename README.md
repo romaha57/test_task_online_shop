@@ -25,6 +25,7 @@
 3. `docker-compose run --rm django python manage.py createsuperuser`
 4. `docker-compose up`
 
+
 ## Как работает сайт
 - Документация OpenAPI в файлах openapi.json/openapi.yaml
 - Устанавливаем себе на компьютер по инструкции выше
