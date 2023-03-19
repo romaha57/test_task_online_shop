@@ -8,6 +8,8 @@
 
 ## Установка:
 
+### 1 вариант:
+
 1. `git clone https://github.com/romaha57/test_task_online_shop.git`
 2. `pip install --upgrade pip`
 3. `pip install -r requirements.txt`
@@ -15,6 +17,13 @@
 5. `python manage.py makemigrations`
 6. `python manage.py migrate`
 7. `python manage.py createsuperuser`
+
+
+### 2 вариант:
+1. `git clone https://github.com/romaha57/test_task_online_shop.git`
+2. `docker-compose run --rm django python manage.py migrate` 
+3. `docker-compose run --rm django python manage.py createsuperuser`
+4. `docker-compose up`
 
 ## Как работает сайт
 - Документация OpenAPI в файлах openapi.json/openapi.yaml
