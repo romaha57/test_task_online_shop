@@ -21,9 +21,12 @@
 
 ### 2 вариант:
 1. `git clone https://github.com/romaha57/test_task_online_shop.git`
-2. `docker-compose run --rm django python manage.py migrate` 
-3. `docker-compose run --rm django python manage.py createsuperuser`
-4. `docker-compose up`
+2. `docker-compose up -d`
+3. `docker-compose run --rm django python online_shop/manage.py makemigrations` 
+4. `docker-compose run --rm django python online_shop/manage.py migrate` 
+5. `docker-compose run --rm django python online_shop/manage.py createsuperuser`
+6. Создаем суперпользователя и заходим в админ: http://localhost:8000/admin
+
 
 
 ## Как работает сайт
