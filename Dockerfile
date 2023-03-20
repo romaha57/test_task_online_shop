@@ -12,4 +12,4 @@ COPY . .
 
 CMD ["python", "online_shop/manage.py", "makemigrations"]
 CMD ["python", "online_shop/manage.py", "migrate"]
-CMD ["python", "online_shop/manage.py", "runserver"]
+CMD ["python", "online_shop/manage.py", "runserver", "0.0.0.0:8000"]
